@@ -10,9 +10,17 @@ void main(int argc, char *argv[]){
 	printf("<HEAD>\n");
 	printf("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
 	printf("<TITLE>データ入力</TITLE>\n");
+	printf("<link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">\n");
 	printf("</HEAD>\n");
 	printf("<BODY>\n");
 	header();
+
+	printf("<h1>\n");
+	printf("キャラクターソート with PageRank\n");
+	printf("</h1>\n");
+	printf("<p>\n");
+	printf("ページランクアルゴリズムにより、入力した事柄の好感度ランキングを作成します。");
+	printf("</p>\n");
 
 	/** ここにフォームを入力 **/
 	printf("<form action=\"convert.cgi\" method=\"post\" accept-charset=\"UTF-8\">\n");
@@ -24,7 +32,7 @@ void main(int argc, char *argv[]){
 	}
 
 	printf("<p>\n");
-	printf("<input type=\"submit\" value=\"送信\"><input type=\"reset\" value=\"リセット\">\n");
+	printf("<input type=\"submit\" class=\"btn btn-primary\" value=\"送信\"><input type=\"reset\" class=\"btn btn-default\" value=\"リセット\">\n");
 	printf("</p>\n");
 
 	printf("</form>\n");
