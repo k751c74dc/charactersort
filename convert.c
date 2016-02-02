@@ -49,6 +49,12 @@ void main(int argc, char *argv[]){
 			itemcount++;
 		}
 	};
+
+	if (itemcount <= 0) {
+		err();
+		return;
+	}
+	
 	ck->amount = itemcount;
 
 	printf("Content-type:text/html\n");
