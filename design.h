@@ -10,7 +10,6 @@ int header(){
 }
 
 int footer(){
-
 	return 0;
 }
 
