@@ -5,11 +5,12 @@ int footer();
 int err();
 
 int header(){
-
+	printf("<div class=\"container-fluid\">\n");
 	return 0;
 }
 
 int footer(){
+	printf("</div>\n");
 	printf("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\"></script>\n");
 	printf("<script src=\"js/bootstrap.min.js\"></script>\n");
 	return 0;

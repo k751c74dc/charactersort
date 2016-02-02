@@ -9,7 +9,7 @@ void main(int argc, char *argv[]){
 	printf("<HTML>\n");
 	printf("<HEAD>\n");
 	printf("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-	printf("<TITLE>データ入力</TITLE>\n");
+	printf("<TITLE>キャラクター名入力</TITLE>\n");
 	printf("<link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">\n");
 	printf("</HEAD>\n");
 	printf("<BODY>\n");
@@ -19,16 +19,19 @@ void main(int argc, char *argv[]){
 	printf("キャラクターソート with PageRank\n");
 	printf("</h1>\n");
 	printf("<p>\n");
-	printf("ページランクアルゴリズムにより、入力したデータの好感度ランキングを作成します。<BR>各データは50文字までです。");
+	printf("ページランクアルゴリズムにより、入力したキャラクターの好感度ランキングを作成します。<BR>各データは20文字までです。");
 	printf("</p>\n");
 
 	/** ここにフォームを入力 **/
 	printf("<form action=\"convert.cgi\" method=\"post\" accept-charset=\"UTF-8\">\n");
 
 	for ( i = 0; i < MAX_REGISTER; i++){
-		printf("<p>\n");
-		printf("データ%d:<input type=\"text\" name=\"name%d\" maxlength=\"%d\" size=\"50\">\n",i+1,i,MAX_CHAR/2);
-		printf("</p>\n");
+		printf("<div class=\"form-group\">\n");
+		/*
+		printf("<label　class=\"sr-only\" for=\"%d\">データ%d</label>\n",i,i+1);
+		*/
+		printf("<input id=\"%d\" type=\"text\" class=\"form-control\" name=\"name%d\" placeholder=\"キャラ%d\" maxlength=\"%d\" style=\"width:400px;\" >\n",i,i,i+1,MAX_CHAR/2);
+		printf("</div>\n");
 	}
 
 	printf("<p>\n");
