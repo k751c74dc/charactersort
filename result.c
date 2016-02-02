@@ -1,9 +1,10 @@
 #include "cookie.h"
 #include "design.h"
-#include "url.c"
+#include "url.h"
 
 void main(int argc, char *argv[]){
 	Cookie *ck;
+	int i;
 
 	ck = (Cookie *)malloc(sizeof(Cookie));
 
@@ -25,6 +26,17 @@ void main(int argc, char *argv[]){
 	header();
 
 	/** rankingを元に，出力させます **/
+	for(i = 0;i < ck->amount;i++) {
+		switch(i) {
+			case 0: printf(<FONT size = "6">);
+			break;
+			case 1: printf(<FONT size = "4">);
+			break;
+			case 2: printf(<FONT size = "3">);
+			break;
+		}
+		printf("第%d位 ： %s",i+1,ck->name[ck->ranking[i]]);
+	}
 
 	footer();
 
