@@ -6,7 +6,6 @@
 #include "url.h"
 #include "cookie.h"
 
-#define MAX 4000
 int itemcount = 0;
 
 int getstring(char *, char *, char *);
@@ -16,7 +15,7 @@ void main(int argc, char *argv[]){
 	char c; 
 	char tmp[MAX_CHAR];
 	char *pBuf;
-	char tmpname[MAX_REGISTER][MAX_CHAR * 3 + 1];
+	char tmpname[MAX_REGISTER][MAX_CHAR];
 	Cookie *ck;
 
 	ck = (Cookie *)malloc(sizeof(Cookie));
@@ -24,7 +23,7 @@ void main(int argc, char *argv[]){
 	init_cookie(ck);
 	/** **/
 	/**フォームデータをget **/
-	pBuf = (char *)malloc(MAX);
+	pBuf = (char *)malloc(MAX_CHAR * MAX_REGISTER + 100);
 	if (pBuf == NULL) {
 		err();
 		return;
@@ -45,7 +44,7 @@ void main(int argc, char *argv[]){
 		getstring(pBuf, tmp, tmpname[i]);
 
 		if( (strcmp(tmpname[i],"_no_data_") != 0) &&(strcmp(tmpname[i],"_no_element_") != 0) ){
-			strncpy(ck->name[itemcount],tmpname[i],MAX_CHAR * 3 + 1);
+			strncpy(ck->name[itemcount],tmpname[i],MAX_CHAR);
 			itemcount++;
 		}
 	};
