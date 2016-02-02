@@ -3,11 +3,11 @@
 #include "design.h"
 
 void main(int argc, char *argv[]) {
-	int i, j, len;
+	int i, j, len, select;
 	int right, left, row, column;
 	char c;
 	char *pBuf;
-	char ctmp[MAX_CHAR];
+	char ctmp[MAX_CHAR], Rname[MAX_CHAR], Lname[MAX_CHAR];
 	Cookie *ck;
 
 	ck = (Cookie *) malloc(sizeof(Cookie));
@@ -23,12 +23,13 @@ void main(int argc, char *argv[]) {
 	/** もしなかったら(初めの状態)，最初ってこと **/
 	pBuf = (char *) malloc(len + 1);
 	if (pBuf == NULL) {
-		er();
+		err();
 		return;
 	}
 	/**データを受け取る。**/
 	//このとき改行文字等は除外しないと後で思わぬエラーが生じる
 	for (i = 0; (c = getchar()) != EOF; i++) {
+
 		if (c != '\r' && c != '\n')
 			pBuf[i] = c;
 		else
@@ -54,10 +55,10 @@ void main(int argc, char *argv[]) {
 		if (right == 1)
 			ck->registeredLink[row][column] = 1;
 	}
-	int select = 0;
 	if (left == 1 || right == 1)
 		row++;
 
+	select = 0;
 	if (column == row) {
 		row = 0;
 		column++;
@@ -92,8 +93,8 @@ void main(int argc, char *argv[]) {
 		/** 隠しフォーム形式で 比較を **/
 		printf("[%d][%d]left:%d right:%d<p>", column, row, left, right);
 		printf("<table><tr>");
-		strcpy(ctmp, ck->name[column]);
-		url_decode(ctmp, strlen(ctmp));
+		strcpy(Lname, ck->name[column]);
+		url_decode(Lname, strlen(Lname));
 		printf("<td><FORM METHOD=\"POST\" ACTION=\"compare.cgi\">");
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"LEFT\" value=\"1\">");
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"RIGHT\" value=\"0\">");
@@ -111,16 +112,16 @@ void main(int argc, char *argv[]) {
 		printf("</FORM></td>");
 
 		printf("<td><FORM METHOD=\"POST\" ACTION=\"compare.cgi\">");
-		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"LEFT\" value=\"2\">");
-		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"RIGHT\" value=\"2\">");
+		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"LEFT\" value=\"0\">");
+		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"RIGHT\" value=\"0\">");
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"COLUMN\" value=\"%d\">", column);
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"ROW\" value=\"%d\">", row);
 		/*printf("<INPUT TYPE=\"SUBMIT\" VALUE=\"どちらも知らない\"><P>");*/
 		printf("</FORM></td>");
 
 
-		strcpy(ctmp, ck->name[row]);
-		url_decode(ctmp, strlen(ctmp));
+		strcpy(Rname, ck->name[row]);
+		url_decode(Rname, strlen(Rname));
 		printf("<td><FORM METHOD=\"POST\" ACTION=\"compare.cgi\">");
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"LEFT\" value=\"0\">");
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"RIGHT\" value=\"1\">");
@@ -193,19 +194,5 @@ int getstring(char *src, char *element, char *dest) {
 	}
 
 	free(temp);
-	return 0;
-}
-char *strstr(const char *string, const char *strCharSet);
-int er() {
-	printf("Content-type:text/html\n\n");
-	printf("<HTML>\n");
-	printf("<HEAD>\n");
-	printf("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n");
-	printf("<TITLE>Error</TITLE>\n");
-	printf("</HEAD>\n");
-	printf("<BODY>\n");
-	printf("error!");
-	printf("</BODY>\n");
-	printf("</HTML>\n");
 	return 0;
 }
