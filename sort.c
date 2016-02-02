@@ -24,10 +24,10 @@ void main(int argc, char *argv[]){
 			tmp = tmp + ck->registeredLink[j][i];
 		}
 		for(j = 0;j < ck->amount;j++) {
-			if(m == 0) {
+			if(tmp == 0) {
 				break;
 			} else {
-				registeredLink[j][i] = registeredLink[j][i] / m;
+				ck->registeredLink[j][i] = ck->registeredLink[j][i] / tmp;
 			}
 		}
 	}
