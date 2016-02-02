@@ -95,21 +95,17 @@ void main(int argc, char *argv[]){
 
   printf("Content-type:text/html\n");
   set_cookie(ck);
-  printf("/n");
 
   printf("<HTML>\n");
   printf("<HEAD>\n");
   printf("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-  printf("<META HTTP-EQUIV=\"Refresh\" CONTENT=\"10; URL=result.cgi\">\n");
+  printf("<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0; URL=result.cgi\">\n");
   printf("<TITLE>ソート中</TITLE>\n");
   printf("</HEAD>\n");
   printf("<BODY>\n");
   header();
 
   /** リダイレクト文 **/
-	for(i = 0;i < ck->amount;i++) {
-	printf("%d : %f<BR>",i,rank_vector[i]);
-	}
 
   footer();
   
