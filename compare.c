@@ -71,76 +71,82 @@ void main(int argc, char *argv[]){
 	set_cookie(ck);
 	printf("\n");
 
-	printf("<HTML>\n");
-	printf("<HEAD>\n");
-	printf("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-	printf("<TITLE>どっちがいい?</TITLE>\n");
-
-		/** 全て埋まったら，sort.cにリダイレクト **/
-	if(select==1){
+	/** 全て埋まったら，sort.cにリダイレクト **/
+	if(select == 1){
+		printf("<HTML>\n");
+		printf("<HEAD>\n");
+		printf("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+		printf("<TITLE>完了!</TITLE>\n");
 		printf("<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0; URL=sort.cgi \" />");
-	}
-
-	printf("</HEAD>\n");
-	printf("<BODY>\n");
-	header();
+		printf("</HEAD>\n");
+		printf("</HTML>\n");
+	}else{
+		printf("<HTML>\n");
+		printf("<HEAD>\n");
+		printf("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+		printf("<TITLE>どっちがいい?</TITLE>\n");
+		printf("</HEAD>\n");
+		printf("<BODY>\n");
+		header();
 
 	/** 隠しフォーム形式で 比較を **/
-	printf("[%d][%d]left:%d right:%d<p>",column,row,left,right);
-	printf("<table><tr>");
+		printf("[%d][%d]left:%d right:%d<p>",column,row,left,right);
+		printf("<table><tr>");
 
-	char Lname[100];
-	strcpy(Lname,ck->name[column]);
-	url_decode(Lname,strlen(Lname));
-	printf("<td><FORM METHOD=\"POST\" ACTION=\"compare.cgi\">");
-	printf("<INPUT TYPE=\"HIDDEN\" NAME=\"LEFT\" value=\"1\">");
-	printf("<INPUT TYPE=\"HIDDEN\" NAME=\"RIGHT\" value=\"0\">");
-	printf("<INPUT TYPE=\"HIDDEN\" NAME=\"COLUMN\" value=\"%d\">",column);
-	printf("<INPUT TYPE=\"HIDDEN\" NAME=\"ROW\" value=\"%d\">",row);
-	printf("<INPUT TYPE=\"SUBMIT\" style=\"width:100px; height:100px;\" VALUE=\"%s\">",Lname );
-	printf("</FORM></td>");
+		char Lname[100];
+		strcpy(Lname,ck->name[column]);
+		url_decode(Lname,strlen(Lname));
+		printf("<td><FORM METHOD=\"POST\" ACTION=\"compare.cgi\">");
+		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"LEFT\" value=\"1\">");
+		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"RIGHT\" value=\"0\">");
+		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"COLUMN\" value=\"%d\">",column);
+		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"ROW\" value=\"%d\">",row);
+		printf("<INPUT TYPE=\"SUBMIT\" style=\"width:100px; height:100px;\" VALUE=\"%s\">",Lname );
+		printf("</FORM></td>");
 
 
-	printf("<td><FORM METHOD=\"POST\" ACTION=\"compare.cgi\">");
-	printf("<INPUT TYPE=\"HIDDEN\" NAME=\"LEFT\" value=\"1\">");
-	printf("<INPUT TYPE=\"HIDDEN\" NAME=\"RIGHT\" value=\"1\">");
-	printf("<INPUT TYPE=\"HIDDEN\" NAME=\"COLUMN\" value=\"%d\">",column);
-	printf("<INPUT TYPE=\"HIDDEN\" NAME=\"ROW\" value=\"%d\">",row);
-	/*printf("<INPUT TYPE=\"SUBMIT\" VALUE=\"引き分け\"><P>");*/
-	printf("</FORM></td>");
+		printf("<td><FORM METHOD=\"POST\" ACTION=\"compare.cgi\">");
+		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"LEFT\" value=\"1\">");
+		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"RIGHT\" value=\"1\">");
+		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"COLUMN\" value=\"%d\">",column);
+		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"ROW\" value=\"%d\">",row);
+		/*printf("<INPUT TYPE=\"SUBMIT\" VALUE=\"引き分け\"><P>");*/
+		printf("</FORM></td>");
 
-	printf("<td><FORM METHOD=\"POST\" ACTION=\"compare.cgi\">");
-	printf("<INPUT TYPE=\"HIDDEN\" NAME=\"LEFT\" value=\"2\">");
-	printf("<INPUT TYPE=\"HIDDEN\" NAME=\"RIGHT\" value=\"2\">");
-	printf("<INPUT TYPE=\"HIDDEN\" NAME=\"COLUMN\" value=\"%d\">",column);
-	printf("<INPUT TYPE=\"HIDDEN\" NAME=\"ROW\" value=\"%d\">",row);
-	/*printf("<INPUT TYPE=\"SUBMIT\" VALUE=\"どちらも知らない\"><P>");*/
-	printf("</FORM></td>");
+		printf("<td><FORM METHOD=\"POST\" ACTION=\"compare.cgi\">");
+		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"LEFT\" value=\"2\">");
+		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"RIGHT\" value=\"2\">");
+		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"COLUMN\" value=\"%d\">",column);
+		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"ROW\" value=\"%d\">",row);
+		/*printf("<INPUT TYPE=\"SUBMIT\" VALUE=\"どちらも知らない\"><P>");*/
+		printf("</FORM></td>");
 
-	char Rname[100];
-	strcpy(Rname,ck->name[row]);
-	url_decode(Rname,strlen(Rname));
-	printf("<td><FORM METHOD=\"POST\" ACTION=\"compare.cgi\">");
-	printf("<INPUT TYPE=\"HIDDEN\" NAME=\"LEFT\" value=\"0\">");
-	printf("<INPUT TYPE=\"HIDDEN\" NAME=\"RIGHT\" value=\"1\">");
-	printf("<INPUT TYPE=\"HIDDEN\" NAME=\"COLUMN\" value=\"%d\">",column);
-	printf("<INPUT TYPE=\"HIDDEN\" NAME=\"ROW\" value=\"%d\">",row);
-	printf("<INPUT TYPE=\"SUBMIT\" style=\"width:100px; height:100px;\" VALUE=\"%s\"><P>", Rname);
-	printf("</FORM></td>");
-	printf("</tr></table>");
-	/** 自身(compare.cgi)に送信 **/
+		char Rname[100];
+		strcpy(Rname,ck->name[row]);
+		url_decode(Rname,strlen(Rname));
+		printf("<td><FORM METHOD=\"POST\" ACTION=\"compare.cgi\">");
+		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"LEFT\" value=\"0\">");
+		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"RIGHT\" value=\"1\">");
+		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"COLUMN\" value=\"%d\">",column);
+		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"ROW\" value=\"%d\">",row);
+		printf("<INPUT TYPE=\"SUBMIT\" style=\"width:100px; height:100px;\" VALUE=\"%s\"><P>", Rname);
+		printf("</FORM></td>");
+		printf("</tr></table>");
+		/** 自身(compare.cgi)に送信 **/
 
-	for(i=0;i<ck->amount;i++){
-		int j;
-		for(j=0;j<ck->amount;j++){
-			printf("|[%d][%d]=%3d|",i,j,ck->registeredLink[i][j]);
+		for(i=0;i<ck->amount;i++){
+			int j;
+			for(j=0;j<ck->amount;j++){
+				printf("|[%d][%d]=%3d|",i,j,ck->registeredLink[i][j]);
+			}
+			printf("<p>");
+
 		}
-		printf("<p>");
-
+		footer();
+		printf("</BODY>\n");
+		printf("</HTML>\n");
 	}
-	footer();
-	printf("</BODY>\n");
-	printf("</HTML>\n");
+
 	return;
 }
 
