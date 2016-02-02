@@ -55,7 +55,7 @@ void main(int argc, char *argv[]){
 	int j;
 	/** フォームデータからCookie(データ構造)を上書きする **/
 	if(column!=row){
-		if(left==1){ck->registeredLink[column][row]=1;}
+		if(left==1)ck->registeredLink[column][row]=1;
 		if(right==1)ck->registeredLink[row][column]=1;
 	}
 	int select=0;
@@ -63,7 +63,7 @@ void main(int argc, char *argv[]){
 
 	if(column==row){
 		row=0;column++;
-		if(column>ck->amount)select=1;
+		if(column>=ck->amount)select=1;
 	}
 
 	printf("Content-type:text/html\n");
@@ -101,7 +101,7 @@ void main(int argc, char *argv[]){
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"RIGHT\" value=\"0\">");
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"COLUMN\" value=\"%d\">",column);
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"ROW\" value=\"%d\">",row);
-		printf("<INPUT TYPE=\"SUBMIT\" style=\"width:100px; height:100px;\" VALUE=\"%s\">",Lname );
+		printf("<INPUT TYPE=\"SUBMIT\" style=\"width:120px; height:120px;\" VALUE=\"%s\">",Lname );
 		printf("</FORM></td>");
 
 
@@ -129,7 +129,7 @@ void main(int argc, char *argv[]){
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"RIGHT\" value=\"1\">");
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"COLUMN\" value=\"%d\">",column);
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"ROW\" value=\"%d\">",row);
-		printf("<INPUT TYPE=\"SUBMIT\" style=\"width:100px; height:100px;\" VALUE=\"%s\"><P>", Rname);
+		printf("<INPUT TYPE=\"SUBMIT\" style=\"width:120px; height:120px;\" VALUE=\"%s\"><P>", Rname);
 		printf("</FORM></td>");
 		printf("</tr></table>");
 		/** 自身(compare.cgi)に送信 **/
