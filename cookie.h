@@ -5,8 +5,8 @@
 
 typedef struct {
 	char name[MAX_REGISTER][MAX_CHAR * 3 + 1]; /** register name **/
-	int registeredLink[MAX_REGISTER][MAX_REGISTER]; /** link State **/
-	int ranking[MAX_REGISTER]; /** ranking **/
+	float registeredLink[MAX_REGISTER][MAX_REGISTER]; /** link State **/
+	float score[MAX_REGISTER]; /** score **/
 	int amount;
 } Cookie;
 
@@ -22,7 +22,7 @@ int init_cookie(Cookie *ck) {
 		for (j = 0; j < MAX_REGISTER; j++) {
 			ck->registeredLink[i][j] = 0;
 		}
-		ck->ranking[i] = -1;
+		ck->score[i] = -1;
 	}
 	ck->amount = 0;
 
@@ -57,18 +57,18 @@ int get_cookie(Cookie *ck) {
 					if (strcmp(tp, cmpString) == 0) {
 						tp = strtok(NULL, "=; ");
 						strcpy(ctmp, tp);
-						ck->registeredLink[i][j] = atoi(ctmp);
+						ck->registeredLink[i][j] = atof(ctmp);
 
 						tp = strtok(NULL, "=; ");
 					}
 				}
 			}
 			for (i = 0; i < MAX_REGISTER; i++) {
-				sprintf(cmpString, "ranking[%d]", i);
+				sprintf(cmpString, "score[%d]", i);
 				if (strcmp(tp, cmpString) == 0) {
 					tp = strtok(NULL, "=; ");
 					strcpy(ctmp, tp);
-					ck->ranking[i] = atoi(ctmp);
+					ck->score[i] = atof(ctmp);
 
 					tp = strtok(NULL, "=; ");
 				}
@@ -96,14 +96,14 @@ int set_cookie(Cookie *ck) {
 	for (i = 0; i < MAX_REGISTER; i++) {
 		for (j = 0; j < MAX_REGISTER; j++) {
 			printf("Set-Cookie: ");
-			printf("registeredLink[%d][%d]=%d;\n", i, j,
+			printf("registeredLink[%d][%d]=%f;\n", i, j,
 				ck->registeredLink[i][j]);
 		}
 
 	}
 	for (i = 0; i < MAX_REGISTER; i++) {
 		printf("Set-Cookie: ");
-		printf("ranking[%d]=%d;\n", i, ck->ranking[i]);
+		printf("score[%d]=%f;\n", i, ck->score[i]);
 	}
 	printf("Set-Cookie: ");
 	printf("amount=%d;\n", ck->amount);
