@@ -19,6 +19,19 @@ void main(int argc, char *argv[]){
   int tmp;
   /* init rank_vector */
 
+	for(i = 0;i < ck->amount;i++) {
+		for(j = 0;j < ck->amount;j++) {
+			tmp = tmp + ck->registeredLink[j][i];
+		}
+		for(j = 0;j < ck->amount;j++) {
+			if(m == 0) {
+				break;
+			} else {
+				registeredLink[j][i] = registeredLink[j][i] / m;
+			}
+		}
+	}
+	
   for( i = 0; i < ck->amount; i++ ) {
     rank_vector[i] = 1.0/ck->amount;
   }
