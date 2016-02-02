@@ -28,7 +28,6 @@ int init_cookie(Cookie *ck) {
 
 	return 0;
 }
-
 /** reference at webings.net/c/cookie/ **/
 int get_cookie(Cookie *ck) {
 	int i, j;
