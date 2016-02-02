@@ -19,7 +19,7 @@ void main(int argc, char *argv[]){
 
 	for ( i = 0; i < MAX_REGISTER; i++){
 		printf("<p>");
-		printf("データ%d:<input type=\"text\" name=\"name[%d]\" size=\"40\">\n",i,i);
+		printf("データ%d:<input type=\"text\" name=\"name%d\" size=\"40\">\n",i,i);
 		printf("</p>");
 	}
 
