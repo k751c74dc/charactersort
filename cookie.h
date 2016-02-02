@@ -24,7 +24,7 @@ int init_cookie(Cookie *ck) {
 		}
 		ck->ranking[i] = -1;
 	}
-	amount = 0;
+	ck->amount = 0;
 
 	return 0;
 }
