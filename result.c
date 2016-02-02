@@ -15,7 +15,6 @@ void main(int argc, char *argv[]){
 
 	printf("Content-type:text/html\n");
 	set_cookie(ck);
-	printf("/n");
 
 	printf("<HTML>\n");
 	printf("<HEAD>\n");
@@ -28,14 +27,14 @@ void main(int argc, char *argv[]){
 	/** rankingを元に，出力させます **/
 	for(i = 0;i < ck->amount;i++) {
 		switch(i) {
-			case 0: printf(<FONT size = "6">);
+			case 0: printf("<FONT size = \"6\">");
 			break;
-			case 1: printf(<FONT size = "4">);
+			case 1: printf("<FONT size = \"4\">");
 			break;
-			case 2: printf(<FONT size = "3">);
+			case 2: printf("<FONT size = \"3\">");
 			break;
 		}
-		printf("第%d位 ： %s",i+1,ck->name[ck->ranking[i]]);
+		printf("第%d位 ： %s <BR>",i+1,ck->name[(int)ck->score[i]]);
 	}
 
 	footer();
