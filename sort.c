@@ -79,7 +79,7 @@ void main(int argc, char *argv[]){
 		ck->score[i] = i;
   }
 	
-  for( j = 1; j < ck->amount; j++ ) {
+  for( i = 1; i < ck->amount; i++ ) {
     j = i;
     while(j >= 1 && rank_vector[j-1] - rank_vector[j] < 0) {
       tmp = ck->score[j];
