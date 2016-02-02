@@ -137,7 +137,7 @@ void main(int argc, char *argv[]){
 		for(i=0;i<ck->amount;i++){
 			int j;
 			for(j=0;j<ck->amount;j++){
-				printf("|[%d][%d]=%3d|",i,j,ck->registeredLink[i][j]);
+				printf("|[%d][%d]=%f|",i,j,ck->registeredLink[i][j]);
 			}
 			printf("<p>");
 
