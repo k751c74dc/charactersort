@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <malloc.h>
 #include "design.h"
 #include "define.h"
 #include "url.h"
@@ -12,7 +11,7 @@ int getstring(char *, char *, char *);
 
 void main(int argc, char *argv[]){
 	int i,j;
-	char c; 
+	char c;
 	char tmp[MAX_CHAR];
 	char *pBuf;
 	char tmpname[MAX_REGISTER][MAX_CHAR];
@@ -53,7 +52,7 @@ void main(int argc, char *argv[]){
 		err();
 		return;
 	}
-	
+
 	ck->amount = itemcount;
 
 	printf("Content-type:text/html\n");
@@ -83,9 +82,9 @@ void main(int argc, char *argv[]){
 	}
 	*/
 	/** リダイレクト文を **/
-	
+
 	printf("<script>location.href=\"compare.cgi\"</script>\n");
-	
+
 
 
 	printf("</BODY>\n");
