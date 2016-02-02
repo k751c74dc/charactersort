@@ -41,7 +41,6 @@ void main(int argc, char *argv[]){
 	}
 	
 	for(i = 0;i < ck->amount;i++) {
-		printf("%d : %d",i,ranking[i]);
 		switch(i) {
 		case 0: printf("<FONT size = \"6\">");
 		break;
