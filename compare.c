@@ -157,7 +157,7 @@ int getstring(char *src, char *element, char *dest) {
 
 	len = (int) strlen(src);
 	if (len >= 1024) {
-		er();
+		err();
 		free(temp);
 		return -1;
 	}
