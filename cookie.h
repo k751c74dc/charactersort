@@ -18,7 +18,7 @@ int init_cookie(Cookie *ck) {
 	int i, j;
 
 	for (i = 0; i < MAX_REGISTER; i++) {
-		strncpy(ck->name[i], "A", MAX_CHAR * 3 + 1);
+		strncpy(ck->name[i], "", MAX_CHAR * 3 + 1);
 		for (j = 0; j < MAX_REGISTER; j++) {
 			ck->registeredLink[i][j] = 0;
 		}

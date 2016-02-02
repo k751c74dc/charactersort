@@ -5,11 +5,7 @@ void main(int argc, char *argv[]){
 
 	ck = (Cookie *)malloc(sizeof(Cookie));
 
-	init_cookie(ck);
-
-	get_cookie(ck);
-
-
+	//init_cookie(ck);
 	printf("Content-type:text/html\n");
 
 	printf("\n");
@@ -21,19 +17,21 @@ void main(int argc, char *argv[]){
 	printf("</HEAD>\n");
 	printf("<BODY>\n");
 
+	get_cookie(ck);
 	for(i = 0; i < MAX_REGISTER; i++){
 		printf("name[%d]:%s<BR>\n",i,ck->name[i]);
 	}
 
 	for(i = 0; i < MAX_REGISTER; i++){
 		for(j = 0; j < MAX_REGISTER; j++){
-			printf("registeredLink[%d][%d]:%s<BR>\n",i,j,ck->registeredLink[i][j]);
+			printf("registeredLink[%d][%d]:%d<BR>\n",i,j,ck->registeredLink[i][j]);
 		}
 	}
 
 	for(i = 0; i < MAX_REGISTER; i++){
 		printf("ranking[%d]:%d<BR>\n",i,ck->ranking[i]);
 	}
+	printf("amount:%d\n",ck->amount);
 	printf("</BODY>\n");
 	printf("</HTML>\n");
 	free(ck);
