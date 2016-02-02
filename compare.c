@@ -150,6 +150,7 @@ void main(int argc, char *argv[]) {
 }
 int setnewLine(char *src){
 	int len =12;
+	if(strlen(src)<len)return -1;
 	char src2[100];
 	char src3[100]="\n";
 	int i,j;
