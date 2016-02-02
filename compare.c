@@ -3,8 +3,11 @@
 #include "design.h"
 
 void main(int argc, char *argv[]) {
-	int i, len;
+	int i, j, len;
+	int right, left, row, column;
 	char c;
+	char *pBuf;
+	char ctmp[MAX_CHAR];
 	Cookie *ck;
 
 	ck = (Cookie *) malloc(sizeof(Cookie));
@@ -18,7 +21,6 @@ void main(int argc, char *argv[]) {
 
 	/** フォームデータをget **/
 	/** もしなかったら(初めの状態)，最初ってこと **/
-	char *pBuf;
 	pBuf = (char *) malloc(len + 1);
 	if (pBuf == NULL) {
 		er();
@@ -36,21 +38,15 @@ void main(int argc, char *argv[]) {
 	pBuf[i] = '\0';
 
 	//生データから欲しいデータの文字列を切り分ける
-	char aa[100];
-	int left;
-	getstring(pBuf, "LEFT", aa);
-	left = atoi(aa);
-	int right;
-	getstring(pBuf, "RIGHT", aa);
-	right = atoi(aa);
-	int row;
-	getstring(pBuf, "ROW", aa);
-	row = atoi(aa);
-	int column;
-	getstring(pBuf, "COLUMN", aa);
-	column = atoi(aa);
+	getstring(pBuf, "LEFT", ctmp);
+	left = atoi(ctmp);
+	getstring(pBuf, "RIGHT", ctmp);
+	right = atoi(ctmp);
+	getstring(pBuf, "ROW", ctmp);
+	row = atoi(ctmp);
+	getstring(pBuf, "COLUMN", ctmp);
+	column = atoi(ctmp);
 
-	int j;
 	/** フォームデータからCookie(データ構造)を上書きする **/
 	if (column != row) {
 		if (left == 1)
@@ -87,7 +83,7 @@ void main(int argc, char *argv[]) {
 		printf("<HTML>\n");
 		printf("<HEAD>\n");
 		printf(
-				"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+			"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
 		printf("<TITLE>どっちがいい?</TITLE>\n");
 		printf("</HEAD>\n");
 		printf("<BODY>\n");
@@ -96,10 +92,8 @@ void main(int argc, char *argv[]) {
 		/** 隠しフォーム形式で 比較を **/
 		printf("[%d][%d]left:%d right:%d<p>", column, row, left, right);
 		printf("<table><tr>");
-
-		char Lname[100];
-		strcpy(Lname, ck->name[column]);
-		url_decode(Lname, strlen(Lname));
+		strcpy(ctmp, ck->name[column]);
+		url_decode(ctmp, strlen(ctmp));
 		printf("<td><FORM METHOD=\"POST\" ACTION=\"compare.cgi\">");
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"LEFT\" value=\"1\">");
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"RIGHT\" value=\"0\">");
@@ -124,9 +118,9 @@ void main(int argc, char *argv[]) {
 		/*printf("<INPUT TYPE=\"SUBMIT\" VALUE=\"どちらも知らない\"><P>");*/
 		printf("</FORM></td>");
 
-		char Rname[100];
-		strcpy(Rname, ck->name[row]);
-		url_decode(Rname, strlen(Rname));
+
+		strcpy(ctmp, ck->name[row]);
+		url_decode(ctmp, strlen(ctmp));
 		printf("<td><FORM METHOD=\"POST\" ACTION=\"compare.cgi\">");
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"LEFT\" value=\"0\">");
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"RIGHT\" value=\"1\">");
@@ -138,7 +132,6 @@ void main(int argc, char *argv[]) {
 		/** 自身(compare.cgi)に送信 **/
 
 		for (i = 0; i < ck->amount; i++) {
-			int j;
 			for (j = 0; j < ck->amount; j++) {
 				printf("|[%d][%d]=%f|", i, j, ck->registeredLink[i][j]);
 			}
