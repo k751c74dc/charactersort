@@ -30,27 +30,24 @@ int init_cookie(Cookie *ck) {
 /** reference at webings.net/c/cookie/ **/
 int get_cookie(Cookie *ck) {
 	int i ,j;
-	int intcheck = 0;
 	char cmpString[MAX_CHAR];
 	char ctmp[MAX_CHAR];
 	char *strck, *tp, *tp2;
 
+	strck = (char *)malloc(sizeof(getenv("HTTP_COOKIE")));
+
 	if ((strck = getenv("HTTP_COOKIE")) != NULL) {
-		printf("$%s<BR>\n", strck);
+		strcat(strck,"; ");
 		tp = strtok(strck, "=; ");
-		printf("0$%s<BR>\n",tp);
 		do {
-			intcheck = 0;
 			for (i = 0; i < MAX_REGISTER; i++) {
 				sprintf(cmpString, "name[%d]", i);
 				if (strcmp(tp, cmpString) == 0) {
 					tp = strtok(NULL, "=; ");
-					printf("1$%s<BR>\n",tp);
 					/** registering **/
 					strcpy(ck->name[i], tp);
 
 					tp = strtok(NULL, "=; ");
-					printf("0$%s<BR>\n",tp);
 				}
 			}
 			for(i = 0; i < MAX_REGISTER; i++){
@@ -58,12 +55,10 @@ int get_cookie(Cookie *ck) {
 					sprintf(cmpString, "registeredLink[%d][%d]", i, j);
 					if (strcmp(tp, cmpString) == 0) {
 						tp = strtok(NULL, "=; ");
-						printf("1$%s<BR>\n",tp);
 						strcpy(ctmp, tp);
 						ck->registeredLink[i][j] = atoi(ctmp);
 
 						tp = strtok(NULL, "=; ");
-						printf("0$%s<BR>\n",tp);
 					}
 				}
 			}
@@ -71,58 +66,14 @@ int get_cookie(Cookie *ck) {
 				sprintf(cmpString, "ranking[%d]", i);
 				if (strcmp(tp, cmpString) == 0) {
 					tp = strtok(NULL, "=; ");
-					printf("1$%s<BR>\n",tp);
 					strcpy(ctmp, tp);
 					ck->ranking[i] = atoi(ctmp);
 
 					tp = strtok(NULL, "=; ");
-					printf("0$%s<BR>\n",tp);
 				}
-			}
-
-			if (intcheck == 0) {
-				tp = strtok(NULL, "=; ");
 			}
 		} while ((tp = strtok(NULL, "=; ")) != NULL);
 	}
-
-
-/**
-	if ((strck = getenv("HTTP_COOKIE")) != NULL){
-		for(i=0; i<MAX_REGISTER; i++){
-			tp = strtok(strck, ";");
-			tp2 = strtok(tp, "=");
-			sprintf(cmpString, "name[%d]", i);
-			if (!strcmp(tp2, cmpString)){
-				tp2 = strtok(NULL, "=");
-				strncpy(ck->name[i], tp2, MAX_CHAR*3+1);
-				printf("name[%d]=%s; ",i, ck->name[i]);
-			}
-		}
-		for(i=0; i<MAX_REGISTER; i++){
-			for(j=0; j<MAX_REGISTER; j++){
-				tp = strtok(strck, ";");
-				tp2 = strtok(tp, "=");
-				sprintf(cmpString, "registeredLink[%d][%d]",i,j);
-				if (!strcmp(tp2, cmpString)){
-					tp2 = strtok(NULL, "=");
-					ck->registeredLink[i][j] = atoi(tp2);
-					printf("registeredLink[%d][%d]=%d; ",i,j,ck->registeredLink[i][j]);
-				}
-			}
-		}
-		for(i=0; i<MAX_REGISTER; i++){
-			tp = strtok(strck, ";");
-			tp2 = strtok(tp, "=");
-			sprintf(cmpString, "ranking[%d]",i);
-			if (!strcmp(tp2, cmpString)){
-				tp2 = strtok(NULL, "=");
-				ck->ranking[i] = atoi(tp2);
-				printf("ranking[%d]=%d; ",i,ck->ranking[i]);
-			}
-		}
-	}
-**/
 
 	return 0;
 }
