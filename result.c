@@ -4,7 +4,7 @@
 
 void main(int argc, char *argv[]){
 	Cookie *ck;
-	int i;
+	int i,j,tmp;
 
 	ck = (Cookie *)malloc(sizeof(Cookie));
 
@@ -15,6 +15,11 @@ void main(int argc, char *argv[]){
 
 	printf("Content-type:text/html\n");
 	set_cookie(ck);
+	int ranking[ck->amount];
+	
+	for(i = 0;i < ck->amount;i++) {
+		ranking[i] = i;
+	}
 
 	printf("<HTML>\n");
 	printf("<HEAD>\n");
@@ -26,15 +31,26 @@ void main(int argc, char *argv[]){
 
 	/** rankingを元に，出力させます **/
 	for(i = 0;i < ck->amount;i++) {
-		switch(i) {
-			case 0: printf("<FONT size = \"6\">");
-			break;
-			case 1: printf("<FONT size = \"4\">");
-			break;
-			case 2: printf("<FONT size = \"3\">");
-			break;
+		j = i;
+		while(j >= 1 && ck->score[ranking[j-1]] - ck->score[ranking[j]] < 0) {
+			tmp = ranking[j];
+			ranking[j] = ranking[j-1];
+			ranking[j-1] = tmp;
+			j--;
 		}
-		printf("第%d位 ： %s <BR>",i+1,ck->name[(int)ck->score[i]]);
+	}
+	
+	for(i = 0;i < ck->amount;i++) {
+		switch(i) {
+		case 0: printf("<FONT size = \"6\">");
+		break;
+		case 1: printf("<FONT size = \"5\">");
+		break;
+		case 2: printf("<FONT size = \"4\">");
+		break;
+		}
+		url_decode(ck->name[ranking[i]],strlen(ck->name[ranking[i]]));
+		printf("第%d位 ： %s (%f)<BR>",i+1,ck->name[ranking[i]],ck->score[ranking[i]]*100);
 	}
 
 	footer();
