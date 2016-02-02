@@ -19,7 +19,7 @@ void main(int argc, char *argv[]){
 	printf("キャラクターソート with PageRank\n");
 	printf("</h1>\n");
 	printf("<p>\n");
-	printf("ページランクアルゴリズムにより、入力した事柄の好感度ランキングを作成します。");
+	printf("ページランクアルゴリズムにより、入力したデータの好感度ランキングを作成します。<BR>各データは50文字までです。");
 	printf("</p>\n");
 
 	/** ここにフォームを入力 **/
@@ -27,7 +27,7 @@ void main(int argc, char *argv[]){
 
 	for ( i = 0; i < MAX_REGISTER; i++){
 		printf("<p>\n");
-		printf("データ%d:<input type=\"text\" name=\"name%d\" size=\"40\">\n",i,i);
+		printf("データ%d:<input type=\"text\" name=\"name%d\" maxlength=\"%d\" size=\"50\">\n",i+1,i,MAX_CHAR/2);
 		printf("</p>\n");
 	}
 
