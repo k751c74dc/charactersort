@@ -2,7 +2,7 @@
 #include "design.h"
 #include "url.h"
 
-void main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
 	Cookie *ck;
 	int i, j, tmp;
 
@@ -87,5 +87,5 @@ void main(int argc, char *argv[]) {
 	printf("</BODY>\n");
 	printf("</HTML>\n");
 
-	return;
+	return 0;
 }

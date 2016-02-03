@@ -2,7 +2,7 @@
 #include "cookie.h"
 #include "design.h"
 
-void main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
 	int i, j, len, select;
 	int right, left, row, column;
 	char c;
@@ -24,7 +24,7 @@ void main(int argc, char *argv[]) {
 	pBuf = (char *) malloc(len + 1);
 	if (pBuf == NULL) {
 		err();
-		return;
+		return -1;
 	}
 	/**データを受け取る。**/
 	//このとき改行文字等は除外しないと後で思わぬエラーが生じる
@@ -152,7 +152,7 @@ void main(int argc, char *argv[]) {
 		printf("</HTML>\n");
 	}
 
-	return;
+	return 0;
 }
 int setnewLine(char *src) {
 	int len = 18;

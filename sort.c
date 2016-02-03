@@ -1,7 +1,7 @@
 #include "cookie.h"
 #include "design.h"
 
-void main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
 	Cookie *ck;
 
 	ck = (Cookie *) malloc(sizeof(Cookie));
@@ -110,5 +110,5 @@ void main(int argc, char *argv[]) {
 	printf("</BODY>\n");
 	printf("</HTML>\n");
 
-	return;
+	return 0;
 }
