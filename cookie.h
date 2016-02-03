@@ -91,12 +91,13 @@ int set_cookie(Cookie *ck) {
 
 	for (i = 0; i < MAX_REGISTER; i++) {
 		printf("Set-Cookie: ");
-		printf("name[%d]=%s; ", i, ck->name[i]);
+		printf("name[%d]=%s;\n", i, ck->name[i]);
 	}
 	for (i = 0; i < MAX_REGISTER; i++) {
 		for (j = 0; j < MAX_REGISTER; j++) {
 			printf("Set-Cookie: ");
-			printf("registeredLink[%d][%d]=%3.1f; ", i, j, ck->registeredLink[i][j]);
+			printf("registeredLink[%d][%d]=%f;\n", i, j,
+				ck->registeredLink[i][j]);
 		}
 
 	}
@@ -105,7 +106,7 @@ int set_cookie(Cookie *ck) {
 		printf("score[%d]=%f;\n", i, ck->score[i]);
 	}
 	printf("Set-Cookie: ");
-	printf("amount=%d; ", ck->amount);
+	printf("amount=%d;\n", ck->amount);
 	printf("\n");
 
 	return 0;
