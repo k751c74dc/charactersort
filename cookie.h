@@ -96,8 +96,7 @@ int set_cookie(Cookie *ck) {
 	for (i = 0; i < MAX_REGISTER; i++) {
 		for (j = 0; j < MAX_REGISTER; j++) {
 			printf("Set-Cookie: ");
-			printf("registeredLink[%d][%d]=%f;\n", i, j,
-				ck->registeredLink[i][j]);
+			printf("registeredLink[%d][%d]=%f;\n", i, j, ck->registeredLink[i][j]);
 		}
 
 	}

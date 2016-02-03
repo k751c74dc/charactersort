@@ -2,7 +2,7 @@
 #include "design.h"
 #include "define.h"
 
-void main(int argc, char *argv[]){
+void main(int argc, char *argv[]) {
 	int i;
 	printf("Content-type:text/html\n\n");
 
@@ -25,12 +25,12 @@ void main(int argc, char *argv[]){
 	/** ここにフォームを入力 **/
 	printf("<form action=\"convert.cgi\" method=\"post\" accept-charset=\"UTF-8\">\n");
 
-	for ( i = 0; i < MAX_REGISTER; i++){
+	for (i = 0; i < MAX_REGISTER; i++) {
 		printf("<div class=\"form-group\">\n");
 		/*
-		printf("<label　class=\"sr-only\" for=\"%d\">データ%d</label>\n",i,i+1);
-		*/
-		printf("<input id=\"%d\" type=\"text\" class=\"form-control\" name=\"name%d\" placeholder=\"キャラ%d\" maxlength=\"%d\" style=\"width:350px;\" >\n",i,i,i+1,20);
+		 printf("<label　class=\"sr-only\" for=\"%d\">データ%d</label>\n",i,i+1);
+		 */
+		printf("<input id=\"%d\" type=\"text\" class=\"form-control\" name=\"name%d\" placeholder=\"キャラ%d\" maxlength=\"%d\" style=\"width:350px;\" >\n", i, i, i + 1, 20);
 		printf("</div>\n");
 	}
 

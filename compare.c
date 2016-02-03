@@ -84,8 +84,7 @@ void main(int argc, char *argv[]) {
 	} else {
 		printf("<HTML>\n");
 		printf("<HEAD>\n");
-		printf(
-			"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+		printf("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
 		printf("<TITLE>どっちがいい?</TITLE>\n");
 		printf("<link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">\n");
 		printf("</HEAD>\n");
@@ -93,9 +92,9 @@ void main(int argc, char *argv[]) {
 		header();
 
 		/** 隠しフォーム形式で 比較を **/
-/*表示デバッグ
-		printf("[%d][%d]left:%d right:%d<p>", column, row, left, right);
-*/
+		/*表示デバッグ
+		 printf("[%d][%d]left:%d right:%d<p>", column, row, left, right);
+		 */
 
 		printf("<table><tr>");
 		strcpy(Lname, ck->name[column]);
@@ -125,7 +124,6 @@ void main(int argc, char *argv[]) {
 		/*printf("<INPUT TYPE=\"SUBMIT\" VALUE=\"どちらも知らない\"><P>");*/
 		printf("</FORM></td>");
 
-
 		strcpy(Rname, ck->name[row]);
 		url_decode(Rname, strlen(Rname));
 		setnewLine(Rname);
@@ -139,15 +137,15 @@ void main(int argc, char *argv[]) {
 		printf("</tr></table>");
 		/** 自身(compare.cgi)に送信 **/
 
-/* デバッグ用ページランク出力
-		for (i = 0; i < ck->amount; i++) {
-			for (j = 0; j < ck->amount; j++) {
-				printf("|[%d][%d]=%f|", i, j, ck->registeredLink[i][j]);
-			}
-			printf("<p>");
+		/* デバッグ用ページランク出力
+		 for (i = 0; i < ck->amount; i++) {
+		 for (j = 0; j < ck->amount; j++) {
+		 printf("|[%d][%d]=%f|", i, j, ck->registeredLink[i][j]);
+		 }
+		 printf("<p>");
 
-		}
-*/
+		 }
+		 */
 
 		footer();
 		printf("</BODY>\n");
@@ -156,23 +154,24 @@ void main(int argc, char *argv[]) {
 
 	return;
 }
-int setnewLine(char *src){
-	int len =18;
-	if(strlen(src)<len)return -1;
+int setnewLine(char *src) {
+	int len = 18;
+	if (strlen(src) < len)
+		return -1;
 	char src2[100];
-	char src3[100]="&#10;";
-	int i,j;
+	char src3[100] = "&#10;";
+	int i, j;
 	j = 5;
-	for(i = len;src[i] != '\0';i++){
+	for (i = len; src[i] != '\0'; i++) {
 		src3[j] = src[i];
 		j++;
 	}
-	strncpy(src2,src,len);
-	strcat(src2,src3);
+	strncpy(src2, src, len);
+	strcat(src2, src3);
 	/*
-	printf("%s %s %s",src,src2,src3);
-	*/
-	strcpy(src,src2);
+	 printf("%s %s %s",src,src2,src3);
+	 */
+	strcpy(src, src2);
 	return 0;
 }
 int getstring(char *src, char *element, char *dest) {
