@@ -160,9 +160,9 @@ int setnewLine(char *src){
 	int len =18;
 	if(strlen(src)<len)return -1;
 	char src2[100];
-	char src3[100]="&#13;&#10;";
+	char src3[100]="&#10;";
 	int i,j;
-	j = 1;
+	j = 5;
 	for(i = len;src[i] != '\0';i++){
 		src3[j] = src[i];
 		j++;
