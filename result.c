@@ -2,7 +2,7 @@
 #include "design.h"
 #include "url.h"
 
-void main(int argc, char *argv[]){
+int main(int argc, char *argv[]){
 	Cookie *ck;
 	int i,j,tmp;
 
@@ -16,7 +16,7 @@ void main(int argc, char *argv[]){
 	printf("Content-type:text/html\n");
 	set_cookie(ck);
 	int ranking[ck->amount];
-	
+
 	for(i = 0;i < ck->amount;i++) {
 		ranking[i] = i;
 	}
@@ -40,7 +40,7 @@ void main(int argc, char *argv[]){
 			j--;
 		}
 	}
-	
+
 	printf("<table class=\"table table-hover\">\n");
 	printf("<thead>\n<tr>\n");
 	printf("<th>順位</th>\n<th>データ名</th><th>重要度</th>\n");
@@ -73,7 +73,7 @@ void main(int argc, char *argv[]){
 	printf("</tbody>\n</table>\n");
 
 	footer();
-	
+
 	printf("<a href=\"https://twitter.com/share\" class=\"twitter-share-button\" data-url=\"http://www.quickresponse.sakura.ne.jp/\"data-text=");
 
 	printf("\"好感度ランキング！ ");
@@ -88,5 +88,5 @@ void main(int argc, char *argv[]){
 	printf("</BODY>\n");
 	printf("</HTML>\n");
 
-	return;
+	return 0;
 }

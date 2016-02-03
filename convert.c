@@ -9,7 +9,7 @@ int itemcount = 0;
 
 int getstring(char *, char *, char *);
 
-void main(int argc, char *argv[]){
+int main(int argc, char *argv[]){
 	int i,j;
 	char c;
 	char tmp[MAX_CHAR];
@@ -25,7 +25,7 @@ void main(int argc, char *argv[]){
 	pBuf = (char *)malloc(MAX_CHAR * MAX_REGISTER + 100);
 	if (pBuf == NULL) {
 		err();
-		return;
+		return -1;
 	}
 
 	for (i = 0; (c = getchar()) != EOF; i++) {
@@ -50,7 +50,7 @@ void main(int argc, char *argv[]){
 
 	if (itemcount <= 0) {
 		err();
-		return;
+		return -1;
 	}
 
 	ck->amount = itemcount;
@@ -88,7 +88,7 @@ void main(int argc, char *argv[]){
 
 	printf("</BODY>\n");
 	printf("</HTML>\n");
-	return;
+	return 0;
 }
 
 int getstring(char *src, char *element, char *dest)

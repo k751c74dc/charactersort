@@ -2,7 +2,7 @@
 #include "design.h"
 #include "define.h"
 
-void main(int argc, char *argv[]){
+int main(int argc, char *argv[]){
 	int i;
 	printf("Content-type:text/html\n\n");
 
@@ -44,5 +44,5 @@ void main(int argc, char *argv[]){
 	footer();
 	printf("</BODY>\n");
 	printf("</HTML>\n");
-	return;
+	return 0;
 }
