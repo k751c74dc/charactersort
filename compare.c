@@ -78,6 +78,7 @@ void main(int argc, char *argv[]) {
 		printf("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
 		printf("<TITLE>完了!</TITLE>\n");
 		printf("<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0; URL=sort.cgi \" />");
+		printf("<link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">\n");
 		printf("</HEAD>\n");
 		printf("</HTML>\n");
 	} else {
@@ -86,6 +87,7 @@ void main(int argc, char *argv[]) {
 		printf(
 			"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
 		printf("<TITLE>どっちがいい?</TITLE>\n");
+		printf("<link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">\n");
 		printf("</HEAD>\n");
 		printf("<BODY>\n");
 		header();
@@ -101,7 +103,7 @@ void main(int argc, char *argv[]) {
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"RIGHT\" value=\"0\">");
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"COLUMN\" value=\"%d\">", column);
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"ROW\" value=\"%d\">", row);
-		printf("<INPUT TYPE=\"SUBMIT\" style=\"width:360px; height:220px; font-size:40pt\" VALUE=\"%s\">",Lname);
+		printf("<INPUT TYPE=\"SUBMIT\" class=\"btn btn-default btn-block\" style=\"width:360px; height:220px; font-size:40pt\" VALUE=\"%s\">",Lname);
 		printf("</FORM></td>");
 
 		printf("<td><FORM METHOD=\"POST\" ACTION=\"compare.cgi\">");
@@ -129,7 +131,7 @@ void main(int argc, char *argv[]) {
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"RIGHT\" value=\"1\">");
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"COLUMN\" value=\"%d\">", column);
 		printf("<INPUT TYPE=\"HIDDEN\" NAME=\"ROW\" value=\"%d\">", row);
-		printf("<INPUT TYPE=\"SUBMIT\" style=\"width:360px; height:220px; font-size:40pt\" VALUE=\"%s\"><P>",Rname);
+		printf("<INPUT TYPE=\"SUBMIT\" class=\"btn btn-default btn-block\" style=\"width:360px; height:220px; font-size:40pt\" VALUE=\"%s\"><P>",Rname);
 		printf("</FORM></td>");
 		printf("</tr></table>");
 		/** 自身(compare.cgi)に送信 **/
@@ -156,8 +158,8 @@ int setnewLine(char *src){
 	int i,j;
 	j=1;
 	for(i = len;src[i] != '\0';i++){
-	src3[j] = src[i];
-	j++;
+		src3[j] = src[i];
+		j++;
 	}
 	strncpy(src2,src,len);
 	strcat(src2,src3);
