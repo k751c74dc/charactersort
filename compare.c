@@ -93,7 +93,10 @@ void main(int argc, char *argv[]) {
 		header();
 
 		/** 隠しフォーム形式で 比較を **/
+/*表示デバッグ
 		printf("[%d][%d]left:%d right:%d<p>", column, row, left, right);
+*/
+
 		printf("<table><tr>");
 		strcpy(Lname, ck->name[column]);
 		url_decode(Lname, strlen(Lname));
@@ -136,6 +139,7 @@ void main(int argc, char *argv[]) {
 		printf("</tr></table>");
 		/** 自身(compare.cgi)に送信 **/
 
+/* デバッグ用ページランク出力
 		for (i = 0; i < ck->amount; i++) {
 			for (j = 0; j < ck->amount; j++) {
 				printf("|[%d][%d]=%f|", i, j, ck->registeredLink[i][j]);
@@ -143,6 +147,8 @@ void main(int argc, char *argv[]) {
 			printf("<p>");
 
 		}
+*/
+
 		footer();
 		printf("</BODY>\n");
 		printf("</HTML>\n");
@@ -151,19 +157,21 @@ void main(int argc, char *argv[]) {
 	return;
 }
 int setnewLine(char *src){
-	int len =12;
+	int len =18;
 	if(strlen(src)<len)return -1;
 	char src2[100];
-	char src3[100]="\n";
+	char src3[100]="&#13;&#10;";
 	int i,j;
-	j=1;
+	j = 1;
 	for(i = len;src[i] != '\0';i++){
 		src3[j] = src[i];
 		j++;
 	}
 	strncpy(src2,src,len);
 	strcat(src2,src3);
-	printf("%s %s %s<p>",src,src2,src3);
+	/*
+	printf("%s %s %s",src,src2,src3);
+	*/
 	strcpy(src,src2);
 	return 0;
 }

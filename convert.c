@@ -71,7 +71,6 @@ void main(int argc, char *argv[]){
 	/*
 	printf("itemcount is %d<BR>\n",itemcount);
 	printf("ck->amount is %d<BR>\n",ck->amount);
-
 	printf("<BR>");
 	for(i = 0; i < MAX_REGISTER; i++){
 		printf("tmpname[%d]:%s<BR>\n",i,tmpname[i]);

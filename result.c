@@ -76,7 +76,7 @@ void main(int argc, char *argv[]){
 	
 	printf("<a href=\"https://twitter.com/share\" class=\"twitter-share-button\" data-url=\"http://www.quickresponse.sakura.ne.jp/\"data-text=");
 
-	printf("\"");
+	printf("\"好感度ランキング！ ");
 	for (i = 0; i < 3; i++){
 		printf("第%d位:%s ",i+1,ck->name[ranking[i]]);
 	}

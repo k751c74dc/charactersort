@@ -19,20 +19,20 @@ void main(int argc, char *argv[]){
   int loopcount = 0;
   int tmp = 0;
   /* init rank_vector */
-	
-	for(i = 0;i < ck->amount;i++) {
-		for(j = 0;j < ck->amount;j++) {
-			tmp = tmp + ck->registeredLink[j][i];
-		}
-		for(j = 0;j < ck->amount;j++) {
-			if(tmp == 0) {
-				break;
-			} else {
-				ck->registeredLink[j][i] = ck->registeredLink[j][i] / tmp;
-			}
-		}
-	}
-	
+  
+  for(i = 0;i < ck->amount;i++) {
+    for(j = 0;j < ck->amount;j++) {
+      tmp = tmp + ck->registeredLink[j][i];
+    }
+    for(j = 0;j < ck->amount;j++) {
+      if(tmp == 0) {
+        break;
+      } else {
+        ck->registeredLink[j][i] = ck->registeredLink[j][i] / tmp;
+      }
+    }
+  }
+  
   for( i = 0; i < ck->amount; i++ ) {
     rank_vector[i] = 1.0/ck->amount;
   }
@@ -41,7 +41,7 @@ void main(int argc, char *argv[]){
     for( i = 0; i < ck->amount; i++ ) {
       temp_vector[i] = 0;
       for( j = 0; j < ck->amount; j++ ) {
-		temp_vector[i] += rank_vector[j] * ck->registeredLink[i][j];
+    temp_vector[i] += rank_vector[j] * ck->registeredLink[i][j];
       }
       temp_vector[i] = (1.0 - RANDOMWALK_RATIO)*temp_vector[i] + RANDOMWALK_RATIO * (1.0/ck->amount);
       /* replace (1.0/N_PAGES) to rank_vector[i] and see what happens! */
@@ -51,8 +51,8 @@ void main(int argc, char *argv[]){
       if(temp_vector[i] - rank_vector[i] <= 0.0000001 && temp_vector[i] - rank_vector[i] >= -0.0000001) {
         count++;
       } else {
-	count = 0;
-	break;
+  count = 0;
+  break;
       }
     }
     if(count > 3*ck->amount) {
@@ -76,11 +76,11 @@ void main(int argc, char *argv[]){
   
 
   for(i = 0;i < ck->amount;i++) {
-		ck->score[i] = rank_vector[i];
+    ck->score[i] = rank_vector[i];
   }
-	
+  
 /*  
-	for( i = 1; i < ck->amount; i++ ) {
+  for( i = 1; i < ck->amount; i++ ) {
     j = i;
     while(j >= 1 && rank_vector[j-1] - rank_vector[j] < 0) {
       tmp = ck->score[j];
