@@ -1,2 +1,2 @@
 #define MAX_REGISTER 10
-#define MAX_CHAR 40
+#define MAX_CHAR 200
